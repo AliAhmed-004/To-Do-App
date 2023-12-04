@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/util/myButton.dart';
+import 'package:tic_tac_toe/util/my_button.dart';
 
 class NewTask extends StatelessWidget {
   final controller;

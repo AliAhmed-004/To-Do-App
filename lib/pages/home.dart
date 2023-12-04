@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tic_tac_toe/data/database.dart';
-import 'package:tic_tac_toe/util/newTask.dart';
-import 'package:tic_tac_toe/util/toDoTile.dart';
+import 'package:tic_tac_toe/util/new_task.dart';
+import 'package:tic_tac_toe/util/to_do_tile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,10 +19,9 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     //if first time ever opening app, create default data
-    if(myBox.get("TODOLIST") == null) {
+    if (myBox.get("TODOLIST") == null) {
       db.createInitialData();
-    }
-    else {
+    } else {
       db.loadData();
     }
     super.initState();
@@ -31,9 +30,8 @@ class _HomeState extends State<Home> {
   //text controller
   final _controller = TextEditingController();
 
-
   //Method for checkbox tapped
-  void checkBoxChanged(bool? value, index){
+  void checkBoxChanged(bool? value, index) {
     setState(() {
       db.toDoList[index][1] = !db.toDoList[index][1];
     });
@@ -41,7 +39,7 @@ class _HomeState extends State<Home> {
   }
 
   // save method
-  void saveNewTask(){
+  void saveNewTask() {
     setState(() {
       db.toDoList.add([_controller.text, false]);
       _controller.clear();
@@ -51,14 +49,16 @@ class _HomeState extends State<Home> {
   }
 
   //creating new task
-  void createNewTask(){
-    showDialog(context: context, builder: (context){
-      return NewTask(
-        controller: _controller,
-        onSave: saveNewTask,
-        onCancel: () => Navigator.of(context).pop(),
-      );
-    });
+  void createNewTask() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return NewTask(
+            controller: _controller,
+            onSave: saveNewTask,
+            onCancel: () => Navigator.of(context).pop(),
+          );
+        });
   }
 
   //delete task
@@ -72,13 +72,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfffff700),
+      backgroundColor: const Color(0xfffff700),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         elevation: 5,
-        backgroundColor: Color(0xfffff063),
+        backgroundColor: const Color(0xfffff063),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Your To Dos",
           style: TextStyle(
               color: Color(0xff474747),
@@ -87,19 +87,18 @@ class _HomeState extends State<Home> {
         ),
       ),
       drawer: Drawer(
-        backgroundColor: Color(0xfffffb7a),
+        backgroundColor: const Color(0xfffffb7a),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.home),
-              label: Text("Home"))
+                onPressed: () {},
+                icon: const Icon(Icons.home),
+                label: const Text("Home"))
           ],
         ),
       ),
-
       body: ListView.builder(
         itemCount: db.toDoList.length,
         itemBuilder: (context, index) {
@@ -111,14 +110,13 @@ class _HomeState extends State<Home> {
           );
         },
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
-        child: Icon(
+        backgroundColor: const Color(0xfffffc9c),
+        child: const Icon(
           Icons.add,
           color: Colors.black,
         ),
-        backgroundColor: Color(0xfffffc9c),
       ),
     );
   }
