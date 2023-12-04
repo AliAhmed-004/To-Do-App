@@ -3,8 +3,8 @@ import 'package:tic_tac_toe/util/myButton.dart';
 
 class NewTask extends StatelessWidget {
   final controller;
-  VoidCallback onSave;
-  VoidCallback onCancel;
+  final VoidCallback onSave;
+  final VoidCallback onCancel;
 
   NewTask({
     super.key,
@@ -28,12 +28,13 @@ class NewTask extends StatelessWidget {
                 hintText: "Task",
               ),
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 MyButton(text: "Save", onPressed: onSave),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 MyButton(text: "Cancel", onPressed: onCancel),
               ],
             )
