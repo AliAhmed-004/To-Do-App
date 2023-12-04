@@ -4,21 +4,21 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class ToDoTile extends StatelessWidget {
   final String taskName;
   final bool taskCompleted;
-  final Function(bool?)? onChanged;
-  final Function(BuildContext)? deleteFunction;
+  Function(bool?)? onChanged;
+  Function(BuildContext)? deleteFunction;
 
-  ToDoTile(
-      {super.key,
-      required this.taskName,
-      required this.taskCompleted,
-      required this.onChanged,
-      required this.deleteFunction});
+  ToDoTile({
+    super.key,
+    required this.taskName,
+    required this.taskCompleted,
+    required this.onChanged,
+    required this.deleteFunction,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // bool? isChecked = false;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 25, 15, 0),
+      padding: const EdgeInsets.only(left: 25.0, right: 25, top: 25),
       child: Slidable(
         endActionPane: ActionPane(
           motion: StretchMotion(),
@@ -26,34 +26,34 @@ class ToDoTile extends StatelessWidget {
             SlidableAction(
               onPressed: deleteFunction,
               icon: Icons.delete,
-              backgroundColor: Colors.redAccent,
-              borderRadius: BorderRadius.circular(5),
+              backgroundColor: Colors.red.shade300,
+              borderRadius: BorderRadius.circular(12),
             )
           ],
         ),
         child: Container(
-          padding: EdgeInsets.all(25),
+          padding: EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Color(0xffffdd00),
-            borderRadius: BorderRadius.circular(8),
+            color: const Color.fromARGB(255, 255, 238, 85),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [
-              //CheckBox
+              // checkbox
               Checkbox(
                 value: taskCompleted,
                 onChanged: onChanged,
-                activeColor: Colors.amber,
-                checkColor: Colors.black,
+                activeColor: Colors.black,
               ),
 
-              //Task Name
+              // task name
               Text(
                 taskName,
                 style: TextStyle(
-                    decoration: taskCompleted
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none),
+                  decoration: taskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                ),
               ),
             ],
           ),

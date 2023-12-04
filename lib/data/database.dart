@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-class ToDoDatbase{
+class ToDoDatabase {
   List toDoList = [];
 
   // refer the box
@@ -8,7 +8,7 @@ class ToDoDatbase{
 
   //data for first time running the app
   void createInitialData() {
-    toDoList= [
+    toDoList = [
       ["Make app", false],
       ["Exercise", false],
     ];
