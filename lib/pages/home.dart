@@ -41,7 +41,9 @@ class _HomeState extends State<Home> {
   // save method
   void saveNewTask() {
     setState(() {
-      db.toDoList.add([_controller.text, false]);
+      if (_controller.text == "") {
+        db.toDoList.add([_controller.text, false]);
+      }
       _controller.clear();
     });
     Navigator.of(context).pop();
